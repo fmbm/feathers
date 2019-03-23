@@ -13,7 +13,7 @@ yarn add @fmbm/react-feathers
 Clone this repo
 
 ```bash
-yarn && yarn workspace example start
+yarn && yarn workspace @fmbm/react-feathers build && yarn workspace example start
 ```
 
 ## Usage

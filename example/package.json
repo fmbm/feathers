@@ -11,7 +11,7 @@
   "dependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "@fmbm/react-feathers": "0.0.1-alpha",
+    "@fmbm/react-feathers": "*",
     "@feathersjs/feathers": "^3.2.3",
     "@feathersjs/rest-client": "^1.4.7"
   },
