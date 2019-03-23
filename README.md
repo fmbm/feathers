@@ -2,6 +2,6 @@
 
 # FMBM - Feathers Packages
 
-Packages used in-house and open sourced, by [For Makers, by Makers](https://fmbm.io)
+[Feathers](https://feathersjs.com/) packages used in-house and open sourced, by [For Makers, by Makers](https://fmbm.io)
 
 #### NOTE: All packages in this mono repo are currently in alpha.
