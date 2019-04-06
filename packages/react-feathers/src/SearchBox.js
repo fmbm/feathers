@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react"
-
+import PropTypes from 'prop-types'
 import useFormInput from "./hooks/useFormInput"
 import useDebounce from "./hooks/useDebounce"
 import useApi from "./hooks/useApi"
 
-export default function({
+function SearchBox({
   attribute,
   serviceName,
+  component: Component,
   params = {},
   onChangeResults,
   emptySearchResults = false
@@ -68,8 +69,18 @@ export default function({
 
   return (
     <div>
-      <input type="text" {...input} />
+      <Component type="text" {...input} />
       {loading && <span>loading</span>}
     </div>
   )
 }
+
+SearchBox.propTypes = {
+  component: PropTypes.elementType,
+}
+
+SearchBox.defaultProps = {
+  component: 'input',
+}
+
+export default SearchBox

@@ -2,15 +2,17 @@ import React, { useState, useCallback } from "react"
 import SearchBox from "../SearchBox"
 import SelectedItem from "./SelectedItem"
 
-export default ({
+function AutoComplete({
   onClick,
   onClear,
   attribute,
   serviceName,
+  fieldComponent,
+  resultComponent: ResultComponent,
   params,
   emptySearchResults,
   onChangeResults
-}) => {
+}) {
   const [results, setResults] = useState([])
   const [selected, setSelected] = useState([])
 
@@ -57,6 +59,7 @@ export default ({
         <SearchBox
           attribute={attribute}
           serviceName={serviceName}
+          component={fieldComponent}
           params={params}
           onChangeResults={onChangeResultsEnhanced}
           emptySearchResults={emptySearchResults}
@@ -70,9 +73,9 @@ export default ({
               onClick && onClick(e, r)
             }
             return (
-              <li onClick={onClickEnhanced} key={`ac-li-r${r.id}`}>
+              <ResultComponent onClick={onClickEnhanced} key={`ac-li-r${r.id}`}>
                 {r[attribute]}
-              </li>
+              </ResultComponent>
             )
           })}
         </ul>
@@ -80,3 +83,14 @@ export default ({
     </React.Fragment>
   )
 }
+
+AutoComplete.propTypes = {
+  fieldComponent: PropTypes.elementType,
+  resultComponent: PropTypes.elementType
+}
+
+SearchBox.defaultProps = {
+  resultComponent: 'li',
+}
+
+export default AutoComplete

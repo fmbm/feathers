@@ -1,0 +1,49 @@
+stages:
+  - build
+  - publish
+
+# Cache dependencies across jobs only pulling not uploading (upload to cache
+# happens in build stage)
+cache:
+  policy: pull # only pull cache, skip uploading
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - .yarn
+
+# Script run before all stages unless otherwise overriden
+before_script:
+  - yarn install --frozen-lockfile --cache-folder .yarn # Install dependencies skipping Cypress
+
+variables:
+  CYPRESS_CACHE_FOLDER: $CI_PROJECT_DIR/cache/Cypress
+
+# Unit Testing Stage
+# Run unit tests for Cloud Functions
+Build:
+  stage: build
+  image: node:8
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /skip-tests/
+      - $CI_COMMIT_MESSAGE =~ /skip-unit-tests/
+  artifacts:
+    name: $CI_JOB_STAGE-$CI_COMMIT_REF_SLUG
+    expire_in: 2 weeks
+    paths:
+      - dist
+  # Override cache behavior set above since we want to both pull and push to
+  # the cache (no "policy" provided since pull-push is default)
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - .yarn
+  script:
+    - yarn --cwd react-feathers build # Build feathers
+
+Publish:
+  stage: publish
+  image: node:8
+  when: manual
+  script:
+    - echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}'>.npmrc
+    - npm publish
