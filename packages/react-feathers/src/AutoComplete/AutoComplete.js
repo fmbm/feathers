@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from "react"
-import SearchBox from "../SearchBox"
-import SelectedItem from "./SelectedItem"
+import React, { useState, useCallback } from 'react'
+import PropTypes from 'prop-types'
+import SearchBox from '../SearchBox'
+import SelectedItem from './SelectedItem'
 
 function AutoComplete({
   onClick,
@@ -85,12 +86,19 @@ function AutoComplete({
 }
 
 AutoComplete.propTypes = {
+  onClick: PropTypes.func,
+  onClear: PropTypes.func,
+  emptySearchResults: PropTypes.func,
+  onChangeResults: PropTypes.func,
+  attribute: PropTypes.string,
+  serviceName: PropTypes.string,
+  params: PropTypes.object,
   fieldComponent: PropTypes.elementType,
   resultComponent: PropTypes.elementType
 }
 
 SearchBox.defaultProps = {
-  resultComponent: 'li',
+  resultComponent: 'li'
 }
 
 export default AutoComplete
