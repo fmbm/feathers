@@ -1,3 +1,3 @@
-import FeathersContext from "./FeathersContext"
+import FeathersContext from './FeathersContext'
 
 export default FeathersContext.Provider

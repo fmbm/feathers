@@ -1,10 +1,11 @@
-import React from "react"
-import useApi from "./hooks/useApi"
+import React from 'react'
+import PropTypes from 'prop-types'
+import useApi from './hooks/useApi'
 
-export default ({ onChange, attribute, serviceName, params }) => {
+function Dropdown({ onChange, attribute, serviceName, params }) {
   const { loading, response, error } = useApi({ serviceName, params })
-  let options,
-    onChangeEnhanced = onChange
+  let options
+  let onChangeEnhanced = onChange
 
   if (loading) return <div>--loading--</div>
   if (error) throw error
@@ -23,3 +24,12 @@ export default ({ onChange, attribute, serviceName, params }) => {
 
   return <select onChange={onChangeEnhanced}>{options}</select>
 }
+
+Dropdown.propTypes = {
+  onChange: PropTypes.func,
+  attribute: PropTypes.string,
+  serviceName: PropTypes.string,
+  params: PropTypes.object
+}
+
+export default Dropdown

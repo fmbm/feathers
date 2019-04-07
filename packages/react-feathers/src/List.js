@@ -1,5 +1,5 @@
-import { useCallback } from "react"
-import useApi from "./hooks/useApi"
+import { useCallback } from 'react'
+import useApi from './hooks/useApi'
 
 const List = ({ serviceName, params, renderRow }) => {
   const { response } = useApi({ serviceName, params })

@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
+import useFormInput from './hooks/useFormInput'
+import useDebounce from './hooks/useDebounce'
+import useApi from './hooks/useApi'
 
-import useFormInput from "./hooks/useFormInput"
-import useDebounce from "./hooks/useDebounce"
-import useApi from "./hooks/useApi"
-
-export default function({
+function SearchBox({
   attribute,
   serviceName,
+  component: Component,
   params = {},
   onChangeResults,
   emptySearchResults = false
@@ -38,38 +39,47 @@ export default function({
     (debouncedQuery || emptySearchResults) && response && response.data
 
   // Update params for searching
-  useEffect(
-    () => {
-      // Only fire if we have a string (prevents unnecessary API calls on first render)
-      // Also verify there's an actual query, unless we allow empty results
-      if (
-        typeof debouncedQuery === "string" &&
-        (emptySearchResults || debouncedQuery.length)
-      )
-        mergeQueryParams({
-          query: { [attribute]: { $like: `%${debouncedQuery}%` } }
-        })
-    },
-    [debouncedQuery]
-  )
+  useEffect(() => {
+    // Only fire if we have a string (prevents unnecessary API calls on first render)
+    // Also verify there's an actual query, unless we allow empty results
+    if (
+      typeof debouncedQuery === 'string' &&
+      (emptySearchResults || debouncedQuery.length)
+    )
+      mergeQueryParams({
+        query: { [attribute]: { $like: `%${debouncedQuery}%` } }
+      })
+  }, [debouncedQuery])
 
   // Update field value
-  const input = useFormInput("", v => {
+  const input = useFormInput('', v => {
     setQuery(v)
   })
 
   // Fire callback w/results
-  useEffect(
-    () => {
-      if (onChangeResults) onChangeResults(results)
-    },
-    [results]
-  )
+  useEffect(() => {
+    if (onChangeResults) onChangeResults(results)
+  }, [results])
 
   return (
     <div>
-      <input type="text" {...input} />
+      <Component type="text" {...input} />
       {loading && <span>loading</span>}
     </div>
   )
 }
+
+SearchBox.propTypes = {
+  attribute: PropTypes.string,
+  serviceName: PropTypes.string,
+  params: PropTypes.object,
+  emptySearchResults: PropTypes.func,
+  onChangeResults: PropTypes.func,
+  component: PropTypes.elementType
+}
+
+SearchBox.defaultProps = {
+  component: 'input'
+}
+
+export default SearchBox
