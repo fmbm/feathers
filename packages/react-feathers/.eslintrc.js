@@ -10,7 +10,8 @@ module.exports = {
   plugins: [
     "babel",
     "react",
-    "prettier"
+    "prettier",
+    "react-hooks"
   ],
   env: {
     "browser": true,
@@ -19,6 +20,8 @@ module.exports = {
   rules: {
     semi: [2,"never"],
     "no-console": "error",
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
     "prettier/prettier": [
       "error",
       {

@@ -49,7 +49,7 @@ function SearchBox({
       mergeQueryParams({
         query: { [attribute]: { $like: `%${debouncedQuery}%` } }
       })
-  }, [debouncedQuery])
+  }, [attribute, debouncedQuery, emptySearchResults])
 
   // Update field value
   const input = useFormInput('', v => {
@@ -59,7 +59,7 @@ function SearchBox({
   // Fire callback w/results
   useEffect(() => {
     if (onChangeResults) onChangeResults(results)
-  }, [results])
+  }, [onChangeResults, results])
 
   return (
     <div>

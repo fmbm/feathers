@@ -30,7 +30,7 @@ function useApi({ serviceName, params }, ready = true) {
     } else {
       setLoading(false)
     }
-  }, [params])
+  }, [params, feathers, ready, serviceName])
 
   return { response, loading, error }
 }

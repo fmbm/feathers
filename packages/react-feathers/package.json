@@ -1,6 +1,6 @@
 {
   "name": "@fmbm/react-feathers",
-  "version": "0.0.3-alpha.2",
+  "version": "0.0.3-alpha.3",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -18,8 +18,8 @@
     "@feathersjs/feathers": "^3.2.3",
     "@feathersjs/rest-client": "^1.4.7",
     "prop-types": "^15.0.0",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -36,6 +36,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0",
     "eslint-plugin-standard": "^4.0.0",
     "prettier": "1.16.4",
     "size-limit": "^1.0.1"

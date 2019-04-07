@@ -10,6 +10,7 @@ function AutoComplete({
   serviceName,
   fieldComponent,
   resultComponent: ResultComponent,
+  selectedItemComponent,
   params,
   emptySearchResults,
   onChangeResults
@@ -20,15 +21,17 @@ function AutoComplete({
   /*
     Toggle item from selected list
   */
-  const toggleSelected = useCallback(v =>
-    setSelected(curSelected => {
-      let alreadySelected = curSelected[v.id]
-      let newSelected = Object.assign({}, curSelected, { [v.id]: v })
+  const toggleSelected = useCallback(
+    v =>
+      setSelected(curSelected => {
+        let alreadySelected = curSelected[v.id]
+        let newSelected = Object.assign({}, curSelected, { [v.id]: v })
 
-      if (alreadySelected) delete newSelected[v.id]
+        if (alreadySelected) delete newSelected[v.id]
 
-      return newSelected
-    })
+        return newSelected
+      }),
+    []
   )
 
   const onChangeResultsEnhanced = r => {
@@ -40,6 +43,14 @@ function AutoComplete({
 
   return (
     <React.Fragment>
+      <SearchBox
+        attribute={attribute}
+        serviceName={serviceName}
+        component={fieldComponent}
+        params={params}
+        onChangeResults={onChangeResultsEnhanced}
+        emptySearchResults={emptySearchResults}
+      />
       {itemsSelected &&
         Object.values(selected).map(item => {
           const onClearEnhanced = e => {
@@ -52,20 +63,11 @@ function AutoComplete({
               key={`ac-si-${item.id}`}
               item={item}
               attribute={attribute}
+              component={selectedItemComponent}
               onClear={onClearEnhanced}
             />
           )
         })}
-      {!itemsSelected && (
-        <SearchBox
-          attribute={attribute}
-          serviceName={serviceName}
-          component={fieldComponent}
-          params={params}
-          onChangeResults={onChangeResultsEnhanced}
-          emptySearchResults={emptySearchResults}
-        />
-      )}
       {!itemsSelected && results && (
         <ul>
           {results.map(r => {
@@ -93,6 +95,7 @@ AutoComplete.propTypes = {
   attribute: PropTypes.string,
   serviceName: PropTypes.string,
   params: PropTypes.object,
+  selectedItemComponent: PropTypes.elementType,
   fieldComponent: PropTypes.elementType,
   resultComponent: PropTypes.elementType
 }
