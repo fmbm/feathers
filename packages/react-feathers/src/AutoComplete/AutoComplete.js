@@ -97,7 +97,7 @@ AutoComplete.propTypes = {
   resultComponent: PropTypes.elementType
 }
 
-SearchBox.defaultProps = {
+AutoComplete.defaultProps = {
   resultComponent: 'li'
 }
 
