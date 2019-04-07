@@ -31,10 +31,10 @@ yarn && yarn workspace @fmbm/react-feathers build && yarn workspace example star
 
 [feathers-site-url]: https://feathersjs.com/
 [fmbm-site-url]: https://fmbm.io
-[npm-image]: https://img.shields.io/npm/v/@fmbm/feathers.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/@fmbm/feathers
-[npm-downloads-image]: https://img.shields.io/npm/dm/@fmbm/feathers.svg?style=flat-square
-[license-image]: https://img.shields.io/npm/l/@fmbm/feathers.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/@fmbm/react-feathers.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/@fmbm/react-feathers
+[npm-downloads-image]: https://img.shields.io/npm/dm/@fmbm/react-feathers.svg?style=flat-square
+[license-image]: https://img.shields.io/npm/l/@fmbm/react-feathers.svg?style=flat-square
 [license-url]: https://github.com/fmbm/feathers/blob/master/LICENSE
 [code-style-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [code-style-url]: http://standardjs.com/
