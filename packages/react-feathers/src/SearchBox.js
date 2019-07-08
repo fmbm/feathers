@@ -9,6 +9,7 @@ function SearchBox({
   serviceName,
   component: Component,
   params = {},
+  mergeParams = true,
   onChangeResults,
   emptySearchResults = false
 }) {
@@ -17,14 +18,18 @@ function SearchBox({
   const debouncedQuery = useDebounce(query, 200)
 
   // Merge params w/previous params
-  const mergeQueryParams = newParams =>
-    setApiParams(prevParams => ({
-      ...prevParams,
-      query: {
-        ...prevParams.query,
-        ...newParams.query
-      }
-    }))
+  const mergeQueryParams = newParams => {
+    if (mergeParams)
+      return setApiParams(prevParams => ({
+        ...prevParams,
+        query: {
+          ...prevParams.query,
+          ...newParams.query
+        }
+      }))
+
+    return setApiParams(newParams)
+  }
 
   // API call
   const { loading, response, error } = useApi(
@@ -43,7 +48,7 @@ function SearchBox({
     // Only fire if we have a string (prevents unnecessary API calls on first render)
     // Also verify there's an actual query, unless we allow empty results
     if (
-      typeof debouncedQuery === 'string' &&
+      typeof debouncedQuery === "string" &&
       (emptySearchResults || debouncedQuery.length)
     )
       mergeQueryParams({
