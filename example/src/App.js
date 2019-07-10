@@ -12,6 +12,7 @@ import feathers from "./feathers"
 export default () => {
   const onChange = (e, v) => console.log(v)
   const onChangeResults = r => console.log(r)
+  const onError = e => window.alert(e.toString())
 
   return (
     <FeathersProvider value={feathers}>
@@ -30,7 +31,8 @@ export default () => {
       <SearchBox
         serviceName={process.env.REACT_APP_SERVICE_NAME}
         onChangeResults={onChangeResults}
-        attribute={process.env.REACT_APP_ATTRIBUTE}
+        attribute={process.env.REACT_APP_ATTRIBUTE_d}
+        onError={onError}
       />
       <AutoComplete
         serviceName={process.env.REACT_APP_SERVICE_NAME}

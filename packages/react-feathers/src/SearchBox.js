@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import useFormInput from './hooks/useFormInput'
-import useDebounce from './hooks/useDebounce'
-import useApi from './hooks/useApi'
+import React, { useState, useEffect } from "react"
+import PropTypes from "prop-types"
+import useFormInput from "./hooks/useFormInput"
+import useDebounce from "./hooks/useDebounce"
+import useApi from "./hooks/useApi"
 
 function SearchBox({
   attribute,
@@ -10,6 +10,7 @@ function SearchBox({
   component: Component,
   params = {},
   mergeParams = true,
+  onError,
   onChangeResults,
   emptySearchResults = false
 }) {
@@ -35,7 +36,8 @@ function SearchBox({
   const { loading, response, error } = useApi(
     {
       serviceName,
-      params: apiParams
+      params: apiParams,
+      onError
     },
     debouncedQuery !== false
   )
@@ -57,7 +59,7 @@ function SearchBox({
   }, [debouncedQuery])
 
   // Update field value
-  const input = useFormInput('', v => {
+  const input = useFormInput("", v => {
     setQuery(v)
   })
 
@@ -84,7 +86,7 @@ SearchBox.propTypes = {
 }
 
 SearchBox.defaultProps = {
-  component: 'input'
+  component: "input"
 }
 
 export default SearchBox
