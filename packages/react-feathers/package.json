@@ -1,6 +1,6 @@
 {
   "name": "@fmbm/react-feathers",
-  "version": "0.0.4-alpha",
+  "version": "0.0.6-alpha",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
