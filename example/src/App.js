@@ -31,7 +31,7 @@ export default () => {
       <SearchBox
         serviceName={process.env.REACT_APP_SERVICE_NAME}
         onChangeResults={onChangeResults}
-        attribute={process.env.REACT_APP_ATTRIBUTE_d}
+        attribute={process.env.REACT_APP_ATTRIBUTE}
         onError={onError}
       />
       <AutoComplete
