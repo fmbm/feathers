@@ -1,8 +1,10 @@
 import React from "react"
+import './style.css'
 
 import {
   Dropdown,
   FeathersProvider,
+  InfiniteList,
   AutoComplete,
   SearchBox,
   List
@@ -52,6 +54,25 @@ export default () => {
           <div key={row.id}>{row[process.env.REACT_APP_ATTRIBUTE]}</div>
         )}
       />
+      <h1>{"<InfiniteList />"}</h1>
+      <div className="infinite_list">
+        <InfiniteList 
+          serviceName={process.env.REACT_APP_SERVICE_NAME}
+          params={{
+            query: {
+              $limit: 10,
+              $sort: { id: -1 }
+            }
+          }}
+          renderRow={row => 
+            <div className="infinite_list__item" key={row.id}>
+              {row.id}<br />
+              {row[process.env.REACT_APP_ATTRIBUTE]}
+            </div>
+          } 
+          renderEmpty={() => <div>Nothing to see here</div>}
+        />
+      </div>
     </FeathersProvider>
   )
 }
