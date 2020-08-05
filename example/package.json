@@ -9,11 +9,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@feathersjs/feathers": "^3.2.3",
+    "@feathersjs/rest-client": "^1.4.7",
+    "@fmbm/react-feathers": "latest",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "@fmbm/react-feathers": "latest",
-    "@feathersjs/feathers": "^3.2.3",
-    "@feathersjs/rest-client": "^1.4.7"
+    "react-waypoint": "^9.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
