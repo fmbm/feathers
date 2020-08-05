@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import './style.css'
 
 import {
@@ -15,6 +15,7 @@ export default () => {
   const onChange = (e, v) => console.log(v)
   const onChangeResults = r => console.log(r)
   const onError = e => window.alert(e.toString())
+  const [ limit, setLimit ] = useState(10)
 
   return (
     <FeathersProvider value={feathers}>
@@ -55,12 +56,13 @@ export default () => {
         )}
       />
       <h1>{"<InfiniteList />"}</h1>
+      Limit (per load) <input value={limit} onChange={e => setLimit(e.target.value)} />
       <div className="infinite_list">
         <InfiniteList 
           serviceName={process.env.REACT_APP_SERVICE_NAME}
           params={{
             query: {
-              $limit: 10,
+              $limit: limit,
               $sort: { id: -1 }
             }
           }}

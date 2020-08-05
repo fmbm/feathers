@@ -23,6 +23,13 @@ function InfiniteList({
     [params]
   );
 
+  // Clean up: Reset entire results if params change. Otherwise we append new data
+  // To an old list
+  useEffect(() => {
+    setResults(initialResults)
+    setApiParams(params)
+  }, [params])
+
   // Since we update params when Waypoint is triggered, this causes a re-render
   // Which in-turn causes useAPI to run again, since useAPI re-runs whenever params are updated
   // Once useAPI has a response for us, this is triggered, assuming the response has changed
@@ -38,7 +45,7 @@ function InfiniteList({
   function onEnter(e) {
     onLoadMore && onLoadMore(e);
     setApiParams((prevParams) => {
-      const offset = parseInt(prevParams.query.$skip || 0) + 10;
+      const offset = parseInt(prevParams.query.$skip || 0) + parseInt((prevParams.query.$limit || 10));
       return {
         ...prevParams,
         ...{
