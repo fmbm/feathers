@@ -44,7 +44,7 @@ export default () => {
         params={{
           query: {
             $limit: 2,
-            [process.env.REACT_APP_ATTRIBUTE]: { $like: "%Hello%" },
+            [process.env.REACT_APP_ATTRIBUTE]: { $like: process.env.REACT_APP_LIST_SEARCH },
             $sort: { id: -1 }
           }
         }}
