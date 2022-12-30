@@ -23,12 +23,6 @@ yarn add @fmbm/react-feathers
 
 The example lives in the [`example` folder](/example)
 
-### Run Example
-
-```bash
-yarn && yarn workspace @fmbm/react-feathers build && yarn workspace example start
-```
-
 [feathers-site-url]: https://feathersjs.com/
 [fmbm-site-url]: https://fmbm.io
 [npm-image]: https://img.shields.io/npm/v/@fmbm/react-feathers.svg?style=flat-square
