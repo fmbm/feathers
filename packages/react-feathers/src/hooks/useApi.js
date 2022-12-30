@@ -1,6 +1,31 @@
 import { useEffect, useContext, useState, useDebugValue } from "react"
 import FeathersContext from "../FeathersContext"
 
+/**
+ * @typedef UseAPIConfig
+ * @type {object}
+ * @property {string} serviceName - Name of the feathers service
+ * @property {object} params - Params to find to service.find()
+ * @property {function} onError - Callback for when an error occurs
+ */
+
+
+/**
+ * @typedef UseAPIResponse
+ * @type {object}
+ * @property {object} response - Feathers response
+ * @property {boolean} loading - Loading state
+ * @property {error} error - Feathers service error
+ */
+
+/**
+ * Access the Feathers API directly, via a specific service
+ *
+ * @param {UseAPIConfig} config
+ * @param {boolean} ready
+ * 
+ * @returns {}
+ */
 function useApi({ serviceName, params, onError }, ready = true) {
   const feathers = useContext(FeathersContext)
 
