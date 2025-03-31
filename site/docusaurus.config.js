@@ -53,9 +53,27 @@ const config = {
     ],
   ],
 
+    // https://github.com/facebook/docusaurus/discussions/4104#discussioncomment-4405148
+  // themes: ['@docusaurus/theme-search-algolia'],
+
+// ddsad asfa
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      // https://github.com/facebook/docusaurus/discussions/4104#discussioncomment-4405148
+      algolia: {
+        pluginId: 'test',
+        appId: 'foo',
+        apiKey: 'bar',
+        indexName: 'baz',
+        footer: {
+          logo: {
+            src: 'img/meta_oss_logo.png',
+          }
+        }
+      },
+      
       navbar: {
         title: 'My Site',
         logo: {
