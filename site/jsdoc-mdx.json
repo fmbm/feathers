@@ -1,0 +1,5 @@
+{
+  "sidebar": "./",
+  "outDir": "./docs/api",
+  "jsdoc": "./jsdoc-mdx-conf.json"
+}

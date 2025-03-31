@@ -1,0 +1,11 @@
+{
+  "tags": {
+    "allowUnknownTags" : true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "source": {
+    "include": ["../packages/react-feathers/src/hooks/"],
+    "includePattern": ".+\\.(j|t)s(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  }
+}
